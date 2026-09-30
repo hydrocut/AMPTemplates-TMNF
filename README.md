@@ -52,6 +52,31 @@ passe. Le SuperAdmin donne **tous** les pouvoirs, y compris par le port
 XML-RPC. Le template les expose vides dans AMP, sous *Administration*, pour
 qu'on ne puisse pas les oublier.
 
+## Un seul template pour Nations ET United
+
+Le paquet serveur est le meme pour les deux jeux de la generation Forever, et
+il contient **tous les circuits** : 65 pour Nations (Blanc, Vert, Rouge, Bleu,
+Noir) et 210 pour United (Race, Platform, Puzzle, Stunts), verifies un par un
+contre les 32 series de circuits livrees -- **zero manquant**.
+
+Autrement dit : le serveur possede les sept environnements sans que personne
+n'ait achete quoi que ce soit.
+
+Ce qui change, c'est **qui a le droit d'entrer**, et cela tient a un seul
+reglage, `packmask`. Le binaire le dit lui-meme :
+
+> Defines the packmask of the server. Can be 'United', 'Nations', 'Sunrise',
+> 'Original', or environment names.
+
+| packmask | Public |
+|---|---|
+| `Nations` | les joueurs du jeu **gratuit** (TMNF) |
+| `United` | seulement ceux qui ont achete **TrackMania United Forever** |
+
+Le reglage decide du public, pas du contenu. Un serveur en `United` avec des
+circuits de Bay ou de Coast sera superbe et desert si personne dans la
+communaute n'a le jeu payant.
+
 ## Installation
 
 ### 1. Ajouter le dépôt dans ADS
