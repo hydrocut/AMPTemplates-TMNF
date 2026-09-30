@@ -25,17 +25,31 @@ que le noyau sache exécuter du 32 bits. C'est plus simple que tout le reste.
 
 ## Deux choses à préparer avant de démarrer
 
-### Un compte de jeu réservé au serveur
+### Un compte de serveur
 
-Le serveur se connecte au réseau TrackMania avec un **compte de joueur**, pas
-avec un compte d'hébergeur. Il se crée dans TMNF comme un compte normal, et il
-sera **réservé au serveur** : on ne peut plus jouer avec.
+Le serveur a besoin d'un compte pour s'identifier sur le réseau TrackMania.
+Sans lui il démarre, puis s'arrête sur :
 
-L'ancien portail `player.trackmania.com`, où l'on gérait ces comptes, ne répond
-plus — il ne concernait que TrackMania United. Pour Nations, le compte créé
-dans le jeu suffit.
+```
+ERROR: Login unknown: there is no account with this login.
+```
 
-Sans ce compte, le serveur démarre mais n'est visible de personne.
+Il se crée ici, une fois connecté avec son compte de joueur :
+
+**<https://www.trackmania.com/player/dedicated-servers>**
+
+On y choisit un *Server Login* (25 caractères maximum) et le site affiche un
+mot de passe **une seule fois** : il faut le copier tout de suite.
+
+Attention aux URL que donnent les vieux tutoriels, toutes mortes :
+`player.trackmania.com` ne répond plus et `trackmania.com/tmu-dedicated/`
+renvoie un 404. La page ci-dessus est la bonne.
+
+**Le repli, si jamais :** un simple compte de joueur fonctionne aussi dans le
+bloc `masterserver_account`. C'est Nadeo qui le dit dans le readme livré avec
+le paquet -- mais *« in this case the player cannot connect to Internet with
+his game »* : le compte est occupé par le serveur et ne peut plus jouer. Un
+vrai compte de serveur évite ce sacrifice.
 
 ### Changer les trois mots de passe d'administration
 
