@@ -154,10 +154,10 @@
         "EnumValues": {}
     },
     {
-        "DisplayName": "Compte du serveur : cle de validation",
+        "DisplayName": "Compte du serveur : cle de validation (optionnelle)",
         "Category": "TrackMania:sports_score",
         "Subcategory": "Compte de jeu:badge:2",
-        "Description": "Les trois derniers caracteres de la cle du jeu. Necessaire pour que les temps comptent au classement officiel.",
+        "Description": "A LAISSER VIDE. Nadeo la livre vide et n'en parle nulle part dans la documentation du serveur : les seules mentions de validation dans le binaire concernent les replays et l'arbitrage. La cle de validation existe pour le CLIENT du jeu (option /validation), pas pour le serveur. Ne remplis ce champ que si tu as une raison precise de le faire.",
         "Keywords": "validation,cle,key",
         "FieldName": "validation_key",
         "InputType": "Password",
