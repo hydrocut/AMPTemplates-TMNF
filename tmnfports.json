@@ -1,0 +1,23 @@
+[
+    {
+        "Protocol": "Both",
+        "Port": 2350,
+        "Ref": "GamePort",
+        "Name": "Port du jeu",
+        "Description": "Connexion des joueurs et annonce au serveur maitre de Nadeo. TrackMania s'en sert en TCP ET en UDP, d'ou le protocole Both."
+    },
+    {
+        "Protocol": "UDP",
+        "Port": 3450,
+        "Ref": "P2PPort",
+        "Name": "Port pair a pair",
+        "Description": "Sert au partage des circuits entre joueurs, pour qu'ils telechargent une piste inconnue sans passer par le serveur."
+    },
+    {
+        "Protocol": "TCP",
+        "Port": 5000,
+        "Ref": "XmlRpcPort",
+        "Name": "Port XML-RPC",
+        "Description": "L'interface de pilotage du serveur. C'est par la que se branche un controleur comme XASECO pour tenir les records et les classements. Reste sur la machine tant que l'acces distant n'est pas active."
+    }
+]

@@ -1,0 +1,138 @@
+# AMPTemplates-TMNF — TrackMania Nations Forever pour AMP
+
+Template **AMP Generic Module** pour héberger un serveur dédié **TrackMania
+Nations Forever** sur Linux. CubeCoders n'en propose aucun pour aucune version
+de TrackMania.
+
+## Pourquoi cette version-là
+
+| Version | Hébergeable ? |
+|---|---|
+| Trackmania (2020) | le palier **Club** est payant ; la version gratuite ne peut pas héberger |
+| TrackMania² / ManiaPlanet | les serveurs de fichiers de ManiaPlanet ne répondent plus |
+| **Nations Forever** | **oui** — jeu gratuit, paquet serveur toujours en ligne |
+
+Et c'est le serveur le plus simple du catalogue :
+
+```
+paquet officiel  : 12,5 Mo
+binaire Linux    : TrackmaniaServer, ELF EXEC STATIQUE
+dépendances      : aucune
+```
+
+**Statique.** Pas de `libc6:i386`, pas de `libcurl`, rien du tout. Il suffit
+que le noyau sache exécuter du 32 bits. C'est plus simple que tout le reste.
+
+## Deux choses à préparer avant de démarrer
+
+### Un compte de jeu réservé au serveur
+
+Le serveur se connecte au réseau TrackMania avec un **compte de joueur**, pas
+avec un compte d'hébergeur. Il se crée dans TMNF comme un compte normal, et il
+sera **réservé au serveur** : on ne peut plus jouer avec.
+
+L'ancien portail `player.trackmania.com`, où l'on gérait ces comptes, ne répond
+plus — il ne concernait que TrackMania United. Pour Nations, le compte créé
+dans le jeu suffit.
+
+Sans ce compte, le serveur démarre mais n'est visible de personne.
+
+### Changer les trois mots de passe d'administration
+
+Le fichier livré par Nadeo contient ceci, mot pour mot :
+
+```xml
+<level><name>SuperAdmin</name><password>SuperAdmin</password></level>
+<level><name>Admin</name><password>Admin</password></level>
+<level><name>User</name><password>User</password></level>
+```
+
+Tous les serveurs TrackMania de la planète partent avec ces trois mots de
+passe. Le SuperAdmin donne **tous** les pouvoirs, y compris par le port
+XML-RPC. Le template les expose vides dans AMP, sous *Administration*, pour
+qu'on ne puisse pas les oublier.
+
+## Installation
+
+### 1. Ajouter le dépôt dans ADS
+
+Configuration → Instance Deployment → Configuration Repositories → ajouter :
+
+```
+hydrocut/AMPTemplates-TMNF:main
+```
+
+puis **Fetch Latest**.
+
+### 2. Créer l'instance, puis Update
+
+AMP télécharge le paquet officiel et le décompresse.
+
+Le téléchargement se fait en **HTTP simple** : `files2.trackmaniaforever.com`
+ne sert pas le HTTPS. C'est un paquet public, figé depuis 2011, mais autant le
+savoir.
+
+L'extraction est en `OverwriteExistingFiles: false`, volontairement : le paquet
+n'a pas bougé depuis le 21 février 2011, donc rien n'est perdu à ne pas
+réécrire — et en échange, **un Update ne peut jamais écraser ta configuration,
+ta liste de circuits ou tes records**.
+
+### 3. Régler, puis démarrer
+
+Dans l'onglet Configuration : le compte de jeu (obligatoire), les trois mots de
+passe d'administration, le nom du serveur, la série de circuits.
+
+## Les ports
+
+| Port | Protocole | Rôle |
+|---|---|---|
+| 2350 | **Both** | jeu et annonce au serveur maître — TrackMania s'en sert en TCP *et* en UDP |
+| 3450 | UDP | partage des circuits entre joueurs |
+| 5000 | TCP | XML-RPC, le pilotage du serveur |
+
+Le XML-RPC reste sur la machine (`xmlrpc_allowremote` à `False`) et doit y
+rester : ce port donne les pleins pouvoirs sans mot de passe de session.
+
+## La configuration est en XML
+
+Contrairement aux autres templates de la série, les réglages ne sont pas des
+lignes `clé valeur` mais des chemins dans un document XML :
+
+```
+/dedicated/server_options/max_players
+/dedicated/masterserver_account/login
+/dedicated/authorization_levels/level[1]/password
+```
+
+Le dernier est le piège : les trois niveaux d'administration sont des éléments
+`<level>` répétés, qui ne se distinguent que par **leur rang**. Une erreur de
+rang donnerait le mot de passe SuperAdmin au niveau User.
+
+`verifier.py` reconstruit la structure du fichier de Nadeo et vérifie que
+**chaque chemin tombe sur un nœud, et un seul**, y compris que `level[1]`
+désigne bien SuperAdmin. Une faute de frappe dans un chemin XML ne se voit
+nulle part ailleurs : AMP afficherait le champ, on le remplirait, et la valeur
+n'irait jamais dans le fichier.
+
+```bash
+python verifier.py
+```
+
+Il doit afficher `Tout est bon.`
+
+## Et les statistiques
+
+Le serveur seul ne garde **aucun record**. Ce qui fait vivre un serveur
+TrackMania, c'est un contrôleur branché sur le port XML-RPC : records locaux
+par circuit, rangs des joueurs, records mondiaux Dedimania, commandes `/top` et
+`/rank` en jeu.
+
+Le classique est **XASECO** (<https://server.xaseco.org/>), en PHP + MySQL.
+C'est le chantier suivant, et c'est lui qui transformera ce serveur en
+véritable serveur communautaire.
+
+## Crédits
+
+TrackMania est une marque de Nadeo / Ubisoft. Ce template n'est ni affilié ni
+approuvé par eux, et ne contient aucun fichier du jeu : le paquet serveur est
+téléchargé depuis le site officiel au moment de l'Update.

@@ -1,0 +1,8 @@
+[
+    {
+        "ConfigFile": "GameData/Config/dedicated_cfg.txt",
+        "AutoMap": true,
+        "Importable": true,
+        "ConfigType": "xml"
+    }
+]

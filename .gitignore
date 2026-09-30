@@ -1,0 +1,5 @@
+*.zip
+*.exe
+TrackmaniaServer
+GameData/
+__pycache__/

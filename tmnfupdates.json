@@ -1,0 +1,21 @@
+[
+    {
+        "UpdateStageName": "Telechargement du serveur",
+        "UpdateSourcePlatform": "All",
+        "UpdateSource": "FetchURL",
+        "UpdateSourceData": "http://files2.trackmaniaforever.com/TrackmaniaServer_2011-02-21.zip",
+        "UpdateSourceTarget": "{{$FullBaseDir}}",
+        "UnzipUpdateSource": true,
+        "OverwriteExistingFiles": false,
+        "DeleteAfterExtract": true,
+        "SkipOnFailure": false
+    },
+    {
+        "UpdateStageName": "Droit d'execution sur le binaire",
+        "UpdateSourcePlatform": "Linux",
+        "UpdateSource": "Executable",
+        "UpdateSourceData": "/bin/bash",
+        "UpdateSourceArgs": "-c \"cd tmnf && chmod +x TrackmaniaServer >/dev/null 2>&1; exit 0\"",
+        "SkipOnFailure": false
+    }
+]
