@@ -25,31 +25,33 @@ que le noyau sache exécuter du 32 bits. C'est plus simple que tout le reste.
 
 ## Deux choses à préparer avant de démarrer
 
-### Un compte de serveur
+### Un compte, et il se cree DANS LE JEU
 
-Le serveur a besoin d'un compte pour s'identifier sur le réseau TrackMania.
-Sans lui il démarre, puis s'arrête sur :
+Le serveur a besoin d'un compte pour s'identifier. Sans lui il demarre, puis
+s'arrete sur :
 
 ```
 ERROR: Login unknown: there is no account with this login.
 ```
 
-Il se crée ici, une fois connecté avec son compte de joueur :
+**Ce compte se cree dans TrackMania Nations Forever**, pas sur un site : lance
+le jeu, cree un nouveau profil avec un compte en ligne, note le login et le mot
+de passe. Le compte sera confisque par le serveur -- il ne pourra plus servir a
+jouer tant que celui-ci tourne.
 
-**<https://www.trackmania.com/player/dedicated-servers>**
+**Le piege a eviter.** Le portail
+<https://www.trackmania.com/player/dedicated-servers> propose de creer de vrais
+comptes de serveur, et il fonctionne tres bien... pour le **Trackmania de
+2020**. Les comptes qu'on y cree ne sont pas connus de l'annuaire que ce
+serveur-ci interroge : on obtient `Login unknown`, verifie trois fois avec deux
+comptes differents. Ce portail n'a rien a faire ici.
 
-On y choisit un *Server Login* (25 caractères maximum) et le site affiche un
-mot de passe **une seule fois** : il faut le copier tout de suite.
+Le login se tape **exactement** comme il a ete cree : une majuscule de travers
+suffit a le rendre introuvable.
 
-Attention aux URL que donnent les vieux tutoriels, toutes mortes :
-`player.trackmania.com` ne répond plus et `trackmania.com/tmu-dedicated/`
-renvoie un 404. La page ci-dessus est la bonne.
-
-**Le repli, si jamais :** un simple compte de joueur fonctionne aussi dans le
-bloc `masterserver_account`. C'est Nadeo qui le dit dans le readme livré avec
-le paquet -- mais *« in this case the player cannot connect to Internet with
-his game »* : le compte est occupé par le serveur et ne peut plus jouer. Un
-vrai compte de serveur évite ce sacrifice.
+Et si la reponse est `Please try again later` plutot que `Login unknown`, c'est
+une bonne nouvelle : le compte existe, il est seulement deja connecte ailleurs
+(ferme le jeu sur ton PC) ou bride quelques minutes apres des essais rates.
 
 ### Changer les trois mots de passe d'administration
 

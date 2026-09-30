@@ -128,10 +128,10 @@
         "EnumValues": {}
     },
     {
-        "DisplayName": "Compte du serveur : identifiant",
+        "DisplayName": "Compte du serveur : identifiant (cree DANS le jeu)",
         "Category": "TrackMania:sports_score",
         "Subcategory": "Compte de jeu:badge:2",
-        "Description": "OBLIGATOIRE. Le Server Login cree sur https://www.trackmania.com/player/dedicated-servers (connecte avec ton compte de joueur). Sans lui, le serveur s'arrete sur 'Login unknown'. Un compte de joueur ordinaire marche aussi, mais il ne pourra alors plus servir a jouer.",
+        "Description": "OBLIGATOIRE, et attention au piege : ce compte se cree DANS LE JEU TrackMania Nations Forever, pas sur un site. Lance TMNF, cree un nouveau profil avec un compte en ligne, et mets ici son login exactement tel que tu l'as tape (la casse compte). N'utilise PAS un compte cree sur trackmania.com/player/dedicated-servers : ce portail gere le Trackmania de 2020, qui interroge un autre annuaire — le serveur repondra 'Login unknown' (verifie trois fois). Le compte sera confisque par le serveur : il ne pourra plus servir a jouer tant qu'il tourne.",
         "Keywords": "compte,login,identifiant,masterserver",
         "FieldName": "account_login",
         "InputType": "text",
@@ -144,7 +144,7 @@
         "DisplayName": "Compte du serveur : mot de passe",
         "Category": "TrackMania:sports_score",
         "Subcategory": "Compte de jeu:badge:2",
-        "Description": "Le mot de passe genere par la page des comptes de serveur. Il n'est affiche QU'UNE FOIS a la creation : s'il est perdu, il faut le regenerer sur la meme page.",
+        "Description": "Le mot de passe que TU as choisi en creant le compte dans le jeu. Si le serveur repond 'Please try again later' au lieu de 'Login unknown', c'est bon signe : le compte existe, il est seulement deja connecte ailleurs (ferme le jeu) ou temporairement bride apres des essais rates (attends dix minutes).",
         "Keywords": "compte,mot,passe,masterserver",
         "FieldName": "account_password",
         "InputType": "Password",
