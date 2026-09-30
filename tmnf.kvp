@@ -36,12 +36,12 @@ App.ExecutableLinux=TrackmaniaServer
 App.WorkingDir=
 App.LinuxCommandLineArgs=/nodaemon
 App.WindowsCommandLineArgs=
-App.CommandLineArgs={{$PlatformArgs}} /dedicated_cfg=dedicated_cfg.txt
+App.CommandLineArgs={{$PlatformArgs}} /dedicated_cfg=dedicated_cfg.txt {{$FormattedArgs}}
 App.UseLinuxIOREDIR=False
 App.AppSettings={}
 App.EnvironmentVariables={}
 App.CommandLineParameterFormat=/{0}={1}
-App.CommandLineParameterDelimiter=
+App.CommandLineParameterDelimiter= 
 App.ExitMethod=OS_CLOSE
 App.ExitTimeout=30
 App.ExitString=
